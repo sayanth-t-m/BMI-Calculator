@@ -1,331 +1,105 @@
-import 'customw.dart';
-import 'icon.dart';
-import 'costants.dart';
+import 'package:bmi/costants.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'result.dart';
-import 'brain.dart';
 
-enum Gender {
-  male,
-  female,
-}
+class Result extends StatelessWidget {
+  Result({super.key, required this.BMIresult,required this.ResultText,required this.mean})
 
-class InputPage extends StatefulWidget {
-  const InputPage({super.key});
+;  final String BMIresult;
+ final String ResultText;
+ final String mean;
 
-  @override
-  State<InputPage> createState() => _InputPageState();
-}
-
-class _InputPageState extends State<InputPage> {
-  Gender? selectGender;
-
-  double height = 160;
-  int weight = 50;
-  int age = 18;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text(
-            'BMI Calculator',
-            style: TextStyle(fontSize: 26, color: Colors.white),
-          ),
-        ),
+        title: const Text('BMI Calculator'),
+        centerTitle: true,
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Expanded(
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: ReusableCard(
-                    onPress: () {
-                      setState(() {
-                        selectGender = Gender.male;
-                      });
-                    },
-                    colour: selectGender == Gender.male
-                        ? kmalecolor
-                        : kinactivecolor,
-                    customw: const custom(
-                      icon: FontAwesomeIcons.mars,
-                      label: 'Male',
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: ReusableCard(
-                    onPress: () {
-                      setState(() {
-                        selectGender = Gender.female;
-                      });
-                    },
-                    colour: selectGender == Gender.female
-                        ? kfemalecolor
-                        : kinactivecolor,
-                    customw: const custom(
-                      icon: FontAwesomeIcons.venus,
-                      label: 'Female',
-                    ),
-                  ),
-                )
-              ],
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Text(
+                'Your Result',
+                style:
+                    klabeltextstyle.copyWith(color: Colors.white, fontSize: 35),
+              ),
             ),
           ),
           Expanded(
-            child: ReusableCard(
-                colour: kactivecolor,
-                customw: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Center(
-                        child: FittedBox(
+            flex: 6,
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: Color(0xF01D1E33),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(15),
+                      topRight: Radius.circular(15),
+                      bottomLeft: Radius.circular(60),
+                      bottomRight: Radius.circular(60)),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Center(
+                      child: Text(
+                        ResultText,
+                        style: kheightstyle,
+                      ),
+                    ),
+                    Column(
+                      children: [
+                        Center(
                           child: Text(
-                            'Height',
-                            style: klabeltextstyle,
+                           'Your BMI result is ',
+                            style: klabeltextstyle.copyWith(color: Colors.tealAccent,
+                                fontWeight: FontWeight.w400),
                           ),
                         ),
-                      ),
-                      FittedBox(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.baseline,
-                          textBaseline: TextBaseline.alphabetic,
-                          children: [
-                            Text(
-                              height.toString(),
-                              style: kheightstyle,
-                            ),
-                            const Text('cm', style: kcmstyle)
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      SliderTheme(
-                        data: SliderTheme.of(context).copyWith(
-                          overlayColor: Colors.greenAccent,
-                          thumbShape: const RoundSliderThumbShape(
-                              enabledThumbRadius: 12,
-                              elevation: 10,
-                              pressedElevation: 30),
-                        ),
-                        child: Slider(
-                          value: height.toDouble(),
-                          min: 0,
-                          max: 250,
-                          activeColor: Colors.tealAccent,
-                          inactiveColor: Colors.teal,
-                          thumbColor: Colors.green,
-                          onChanged: (double value) {
-                            setState(() {
-                              height = value.roundToDouble();
-                            });
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                onPress: () {}),
-          ),
-          Expanded(
-              child: Row(
-            children: [
-              Expanded(
-                child: ReusableCard(
-                  colour: kactivecolor,
-                  customw: Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Weight',
-                          style: klabeltextstyle,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              weight.toString(),
-                              style: kweightstyle,
-                            ),
-                            const Text(
-                              'kg',
-                              style: kcmstyle,
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(width: 50,height: 50,
-                              child: FloatingActionButton(
-                                heroTag: 396,
-                                splashColor: Colors.tealAccent,
-                                backgroundColor: const Color(0xFF4C4F5E),
-                                onPressed: () {
-                                  setState(() {
-                                    if (weight == 1) {
-                                      weight = weight;
-                                    } else {
-                                      weight = weight - 1;
-                                    }
-                                  });
-                                },
-                                child: Icon(
-                                  Icons.remove,
-                                  size: 33,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 10),
-                            SizedBox(width: 50,height: 50,
-                              child: FloatingActionButton(
-                                heroTag: 936,
-                                splashColor: Colors.red,
-                                backgroundColor: const Color(0xFF4C4F5E),
-                                onPressed: () {
-                                  setState(() {
-                                    weight = weight + 1;
-                                  });
-                                },
-                                child: Icon(
-                                  Icons.add,
-                                  size: 30,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
+                        Center(child: Text(BMIresult,style: klabeltextstyle.copyWith(fontSize: 100,
+                            fontWeight: FontWeight.w900),),)
                       ],
                     ),
-                  ),
-                  onPress: () {},
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        mean,
+                        style: kcmstyle.copyWith(
+                            color: const Color(0xC302DEAC),
+                            fontWeight: FontWeight.w300,
+                            fontSize: 20),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              Expanded(
-                child: ReusableCard(
-                  colour: kactivecolor,
-                  customw: Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Age',
-                          style: klabeltextstyle,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              age.toString(),
-                              style: kweightstyle,
-                            ),
-                            const Text(
-                              'years',
-                              style: kcmstyle,
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(width: 50,height: 50,
-                              child: FloatingActionButton(
-                                heroTag: 963,
-                                splashColor: Colors.tealAccent,
-                                backgroundColor: const Color(0xFF4C4F5E),
-                                onPressed: () {
-                                  setState(() {
-                                    if (age == 1) {
-                                      age = age;
-                                    } else {
-                                      age = age - 1;
-                                    }
-                                  });
-                                },
-                                child: Icon(
-                                  Icons.remove,
-                                  size: 25,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 10),
-                            SizedBox(width: 50,height: 50,
-                              child: FloatingActionButton(
-                                heroTag: 369,
-                                splashColor: Colors.red,
-                                backgroundColor: const Color(0xFF4C4F5E),
-                                onPressed: () {
-                                  setState(() {
-                                    age = age + 1;
-                                  });
-                                },
-                                child: Icon(
-                                  Icons.add,
-                                  size: 25,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                  onPress: () {},
-                ),
-              )
-            ],
-          )),
-          Material(
-            color: const Color(0xFF230F5F),
-            borderRadius: const BorderRadius.only(
-              topRight: Radius.circular(60),
-              topLeft: Radius.circular(60),
             ),
-            child: InkWell(
-              onTap: () {
-                CalcBrain calc = CalcBrain(
-                  weight: weight,
-                  height: height.toInt(),
-                );
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Result(
-                            BMIresult: calc.calculate(),
-                            ResultText: calc.getresult(),
-                            mean: calc.mean(),
-                          )),
-                );
-              },
-              splashColor: const Color(0xE07B00FF),
+          ),
+          Expanded(
+            flex: 1,
+            child: Material(
+              color: const Color(0xFF230F5F),
               borderRadius: const BorderRadius.only(
                 topRight: Radius.circular(60),
                 topLeft: Radius.circular(60),
               ),
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(25.0),
+              child: InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                splashColor: const Color(0xE07B00FF),
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(60),
+                  topLeft: Radius.circular(60),
+                ),
+                child: Center(
                   child: Text(
-                    'CALCULATE',
+                    'RE-CALCULATE',
                     style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.w400,
