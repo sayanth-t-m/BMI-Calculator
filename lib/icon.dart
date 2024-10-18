@@ -3,7 +3,7 @@ import 'costants.dart';
 
 
 class custom extends StatelessWidget {
-  const custom({required this.icon, required this.label});
+  const custom({super.key, required this.icon, required this.label});
 
   final IconData icon;
   final String label;
@@ -17,7 +17,7 @@ class custom extends StatelessWidget {
           icon,
           size: 60,
         ),
-        SizedBox(
+        const SizedBox(
           height: 15.0,
         ),
         Text(

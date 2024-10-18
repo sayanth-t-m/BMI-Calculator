@@ -13,10 +13,10 @@ class BMIcalculator extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
         textTheme: GoogleFonts.robotoTextTheme(),
-        scaffoldBackgroundColor: Color(0xFF0a001a),
-        appBarTheme: AppBarTheme(elevation: 10,
+        scaffoldBackgroundColor: const Color(0xFF0a001a),
+        appBarTheme: const AppBarTheme(elevation: 10,
         color: Color(0xff1e0b54),),
-        floatingActionButtonTheme: FloatingActionButtonThemeData(elevation: 20,
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(elevation: 20,
         backgroundColor: Colors.white54),
       ),
       home:  InputPage(),

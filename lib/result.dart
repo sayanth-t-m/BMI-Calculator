@@ -2,10 +2,9 @@ import 'package:bmi/costants.dart';
 import 'package:flutter/material.dart';
 
 class Result extends StatelessWidget {
-  Result({required this.BMIresult,required this.ResultText,required this.mean})
+  Result({super.key, required this.BMIresult,required this.ResultText,required this.mean})
 
-  {}
-  final String BMIresult;
+;  final String BMIresult;
  final String ResultText;
  final String mean;
 
@@ -90,6 +89,14 @@ class Result extends StatelessWidget {
                 topLeft: Radius.circular(60),
               ),
               child: InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                splashColor: const Color(0xE07B00FF),
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(60),
+                  topLeft: Radius.circular(60),
+                ),
                 child: Center(
                   child: Text(
                     'RE-CALCULATE',
@@ -98,14 +105,6 @@ class Result extends StatelessWidget {
                         fontWeight: FontWeight.w400,
                         color: Colors.deepPurple[100]),
                   ),
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                splashColor: const Color(0xE07B00FF),
-                borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(60),
-                  topLeft: Radius.circular(60),
                 ),
               ),
             ),

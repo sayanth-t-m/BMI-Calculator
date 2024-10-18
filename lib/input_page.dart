@@ -12,6 +12,8 @@ enum Gender {
 }
 
 class InputPage extends StatefulWidget {
+  const InputPage({super.key});
+
   @override
   State<InputPage> createState() => _InputPageState();
 }
@@ -27,7 +29,7 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
+        title: const Center(
           child: Text(
             'BMI Calculator',
             style: TextStyle(fontSize: 26, color: Colors.white),
@@ -50,7 +52,7 @@ class _InputPageState extends State<InputPage> {
                     colour: selectGender == Gender.male
                         ? kmalecolor
                         : kinactivecolor,
-                    customw: custom(
+                    customw: const custom(
                       icon: FontAwesomeIcons.mars,
                       label: 'Male',
                     ),
@@ -67,7 +69,7 @@ class _InputPageState extends State<InputPage> {
                     colour: selectGender == Gender.female
                         ? kfemalecolor
                         : kinactivecolor,
-                    customw: custom(
+                    customw: const custom(
                       icon: FontAwesomeIcons.venus,
                       label: 'Female',
                     ),
@@ -85,7 +87,7 @@ class _InputPageState extends State<InputPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Center(
+                      const Center(
                         child: FittedBox(
                           child: Text(
                             'Height',
@@ -103,17 +105,17 @@ class _InputPageState extends State<InputPage> {
                               height.toString(),
                               style: kheightstyle,
                             ),
-                            Text('cm', style: kcmstyle)
+                            const Text('cm', style: kcmstyle)
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       SliderTheme(
                         data: SliderTheme.of(context).copyWith(
                           overlayColor: Colors.greenAccent,
-                          thumbShape: RoundSliderThumbShape(
+                          thumbShape: const RoundSliderThumbShape(
                               enabledThumbRadius: 12,
                               elevation: 10,
                               pressedElevation: 30),
@@ -148,7 +150,7 @@ class _InputPageState extends State<InputPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           'Weight',
                           style: klabeltextstyle,
                         ),
@@ -159,7 +161,7 @@ class _InputPageState extends State<InputPage> {
                               weight.toString(),
                               style: kweightstyle,
                             ),
-                            Text(
+                            const Text(
                               'kg',
                               style: kcmstyle,
                             ),
@@ -172,12 +174,7 @@ class _InputPageState extends State<InputPage> {
                               child: FloatingActionButton(
                                 heroTag: 396,
                                 splashColor: Colors.tealAccent,
-                                child: Icon(
-                                  Icons.remove,
-                                  size: 33,
-                                  color: Colors.white,
-                                ),
-                                backgroundColor: Color(0xFF4C4F5E),
+                                backgroundColor: const Color(0xFF4C4F5E),
                                 onPressed: () {
                                   setState(() {
                                     if (weight == 1) {
@@ -187,24 +184,29 @@ class _InputPageState extends State<InputPage> {
                                     }
                                   });
                                 },
+                                child: Icon(
+                                  Icons.remove,
+                                  size: 33,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             SizedBox(width: 50,height: 50,
                               child: FloatingActionButton(
                                 heroTag: 936,
                                 splashColor: Colors.red,
-                                child: Icon(
-                                  Icons.add,
-                                  size: 30,
-                                  color: Colors.white,
-                                ),
-                                backgroundColor: Color(0xFF4C4F5E),
+                                backgroundColor: const Color(0xFF4C4F5E),
                                 onPressed: () {
                                   setState(() {
                                     weight = weight + 1;
                                   });
                                 },
+                                child: Icon(
+                                  Icons.add,
+                                  size: 30,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ],
@@ -223,7 +225,7 @@ class _InputPageState extends State<InputPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           'Age',
                           style: klabeltextstyle,
                         ),
@@ -234,7 +236,7 @@ class _InputPageState extends State<InputPage> {
                               age.toString(),
                               style: kweightstyle,
                             ),
-                            Text(
+                            const Text(
                               'years',
                               style: kcmstyle,
                             ),
@@ -247,12 +249,7 @@ class _InputPageState extends State<InputPage> {
                               child: FloatingActionButton(
                                 heroTag: 963,
                                 splashColor: Colors.tealAccent,
-                                child: Icon(
-                                  Icons.remove,
-                                  size: 25,
-                                  color: Colors.white,
-                                ),
-                                backgroundColor: Color(0xFF4C4F5E),
+                                backgroundColor: const Color(0xFF4C4F5E),
                                 onPressed: () {
                                   setState(() {
                                     if (age == 1) {
@@ -262,24 +259,29 @@ class _InputPageState extends State<InputPage> {
                                     }
                                   });
                                 },
+                                child: Icon(
+                                  Icons.remove,
+                                  size: 25,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             SizedBox(width: 50,height: 50,
                               child: FloatingActionButton(
                                 heroTag: 369,
                                 splashColor: Colors.red,
-                                child: Icon(
-                                  Icons.add,
-                                  size: 25,
-                                  color: Colors.white,
-                                ),
-                                backgroundColor: Color(0xFF4C4F5E),
+                                backgroundColor: const Color(0xFF4C4F5E),
                                 onPressed: () {
                                   setState(() {
                                     age = age + 1;
                                   });
                                 },
+                                child: Icon(
+                                  Icons.add,
+                                  size: 25,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ],
@@ -299,18 +301,6 @@ class _InputPageState extends State<InputPage> {
               topLeft: Radius.circular(60),
             ),
             child: InkWell(
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(25.0),
-                  child: Text(
-                    'CALCULATE',
-                    style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.deepPurple[100]),
-                  ),
-                ),
-              ),
               onTap: () {
                 CalcBrain calc = CalcBrain(
                   weight: weight,
@@ -330,6 +320,18 @@ class _InputPageState extends State<InputPage> {
               borderRadius: const BorderRadius.only(
                 topRight: Radius.circular(60),
                 topLeft: Radius.circular(60),
+              ),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(25.0),
+                  child: Text(
+                    'CALCULATE',
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.deepPurple[100]),
+                  ),
+                ),
               ),
             ),
           )
